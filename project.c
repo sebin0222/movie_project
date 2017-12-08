@@ -513,7 +513,7 @@ void load_actor() {	//actor_log를 읽어서 a 링크드 리스트를 만들어 
 		serial_num = atoi(token);	//문자열인 token을 정수로 변환
 
 		if (!strcmp(menu, "add"))
-			serial_d_num = serial_num + 1;	//나중에 add a를 할 때 올바른 시리얼 넘버를 갖게함
+			serial_a_num = serial_num + 1;	//나중에 add a를 할 때 올바른 시리얼 넘버를 갖게함
 
 
 		if (strcmp(menu, "delete")) {
@@ -726,7 +726,6 @@ void add_director() {	//director 정보 입력받는 함수
 		root_d_num = 1;
 	}
 	d->serial_number = serial_d_num++;
-
 	printf("name > ");
 	gets(temp);	//name 입력
 	d->name = (char *)malloc(sizeof(char) * strlen(temp) + 1);	//입력받은 글자의 크기만큼 동적할당 받음(+1은 맨뒤에 null을 넣을 공간)
@@ -991,16 +990,17 @@ void print_m(int sn){ //movie print 함수
 				a_p = a_p ->next;
 				continue;
 			}
-			if(!strncmp(a_name, a_p->name, strlen(a_name)-2))
+			if(*(a_name + strlen(a_name) - 1) == 13){
+				*(a_name + strlen(a_name) - 1) = 0;
+			}
+			if(*(a_name + strlen(a_name) - 1) == 13){
+				*(a_name + strlen(a_name) - 1) = 0;
+			}
+			if(!strncmp(a_name, a_p->name, strlen(a_name)))
 				break;
 			a_p = a_p->next;
 		}
-		if(*(a_name + strlen(a_name) - 1) == 13){
-			*(a_name + strlen(a_name) - 1) = 0;
-		}
-		if(*(a_name + strlen(a_name) - 1) == 13){
-			*(a_name + strlen(a_name) - 1) = 0;
-		}
+
 		printf("A%d : %s(%s)\n", i++, a_name==NULL? "-": a_name, (a_p->next == NULL) ? "-" : a_p->birth); //찾은 경우엔 actor 레코드에서 정보를 읽어오고 없는 경우엔 "-" 출력
 	}
 
@@ -1021,16 +1021,17 @@ void print_m(int sn){ //movie print 함수
 					a_p = a_p->next;
 					continue;
 				}
-				if(!strncmp(a_name, a_p->name,strlen(a_name)-2))
+				if(*(a_name + strlen(a_name) - 1) == 13){
+					*(a_name + strlen(a_name) - 1) = 0;
+				}
+				if(*(a_name + strlen(a_name) - 1) == 13){
+					*(a_name + strlen(a_name) - 1) = 0;
+				}
+				if(!strncmp(a_name, a_p->name,strlen(a_name)))
 					break;
 				a_p = a_p->next;
 			}
-			if(*(a_name + strlen(a_name) - 1) == 13){
-				*(a_name + strlen(a_name) - 1) = 0;
-			}
-			if(*(a_name + strlen(a_name) - 1) == 13){
-				*(a_name + strlen(a_name) - 1) = 0;
-			}
+
 			printf("A%d : %s(%s)\n", i++, a_name, a_p->next == NULL ? "-" : a_p->birth);
 			a_name = strtok(NULL, ",");
 		}
@@ -1081,17 +1082,18 @@ void print_d(int sn){ //director 레코드의 print 함수
 			m_p = m_p->next;
 			continue;
 		}
-		if(!strncmp(a_best_movie, m_p->title, strlen(a_best_movie)-2)){ //찾으면 break로 빠져나옴
+		if(*(a_best_movie + strlen(a_best_movie) - 1) == 13){
+			*(a_best_movie + strlen(a_best_movie) - 1) = 0;
+		}
+		if(*(a_best_movie + strlen(a_best_movie) - 1) == 13){
+			*(a_best_movie + strlen(a_best_movie) - 1) = 0;
+		}
+		if(!strncmp(a_best_movie, m_p->title, strlen(a_best_movie))){ //찾으면 break로 빠져나옴
 			break;
 		}
 		m_p = m_p->next;
 	}
-	if(*(a_best_movie + strlen(a_best_movie) - 1) == 13){
-		*(a_best_movie + strlen(a_best_movie) - 1) = 0;
-	}
-	if(*(a_best_movie + strlen(a_best_movie) - 1) == 13){
-		*(a_best_movie + strlen(a_best_movie) - 1) = 0;
-	}
+
 	printf("%s, %s, %s\n", a_best_movie, m_p->next==NULL ? "-" : m_p->year, m_p->next==NULL ? "-" : m_p->time);
 	a_best_movie = strtok(NULL, ",");
 	while(1){		//두번째 best_movies부터의 반복문
@@ -1109,15 +1111,15 @@ void print_d(int sn){ //director 레코드의 print 함수
 					m_p=m_p->next;
 					continue;
 				}
-				if(!strncmp(a_best_movie, m_p->title, strlen(a_best_movie)-2))
+				if(*(a_best_movie + strlen(a_best_movie) - 1) == 13){
+					*(a_best_movie + strlen(a_best_movie) - 1) = 0;
+				}
+				if(*(a_best_movie + strlen(a_best_movie) - 1) == 13){
+					*(a_best_movie + strlen(a_best_movie) - 1) = 0;
+				}
+				if(!strncmp(a_best_movie, m_p->title, strlen(a_best_movie)))
 					break;
 				m_p = m_p->next;
-		}
-		if(*(a_best_movie + strlen(a_best_movie) - 1) == 13){
-			*(a_best_movie + strlen(a_best_movie) - 1) = 0;
-		}
-		if(*(a_best_movie + strlen(a_best_movie) - 1) == 13){
-			*(a_best_movie + strlen(a_best_movie) - 1) = 0;
 		}
 		printf("%s, %s, %s\n", a_best_movie, m_p->next==NULL? "-" : m_p->year, m_p->next==NULL? "-" : m_p->time);
 		a_best_movie = strtok(NULL, ",");
@@ -1166,16 +1168,17 @@ void print_a(int sn){
 			m_p = m_p->next;
 			continue;
 		}
-		if(!strncmp(a_best_movie, m_p->title, strlen(a_best_movie)-2))
+		if(*(a_best_movie + strlen(a_best_movie) - 1) == 13){
+			*(a_best_movie + strlen(a_best_movie) - 1) = 0;
+		}
+		if(*(a_best_movie + strlen(a_best_movie) - 1) == 13){
+			*(a_best_movie + strlen(a_best_movie) - 1) = 0;
+		}
+		if(!strncmp(a_best_movie, m_p->title, strlen(a_best_movie)))
 			break;
 		m_p = m_p->next;
 	}
-	if(*(a_best_movie + strlen(a_best_movie) - 1) == 13){
-		*(a_best_movie + strlen(a_best_movie) - 1) = 0;
-	}
-	if(*(a_best_movie + strlen(a_best_movie) - 1) == 13){
-		*(a_best_movie + strlen(a_best_movie) - 1) = 0;
-	}
+
 	printf("%s, %s, %s\n", a_best_movie, m_p->next == NULL ? "-" : m_p->year, m_p->next == NULL ? "-" : m_p->time);
 	a_best_movie = strtok(NULL, ",");
 	while(1){	//두번째 대표작부터의 반복문
@@ -1194,16 +1197,16 @@ void print_a(int sn){
 					m_p = m_p->next;
 					continue;
 				}
+				if(*(a_best_movie + strlen(a_best_movie) - 1) == 13){
+					*(a_best_movie + strlen(a_best_movie) - 1) = 0;
+				}
+				if(*(a_best_movie + strlen(a_best_movie) - 1) == 13){
+					*(a_best_movie + strlen(a_best_movie) - 1) = 0;
+				}
 				if(!strncmp(a_best_movie, m_p->title, strlen(a_best_movie)-2))
 					break;
 				m_p = m_p->next;
 			}
-		if(*(a_best_movie + strlen(a_best_movie) - 1) == 13){
-			*(a_best_movie + strlen(a_best_movie) - 1) = 0;
-		}
-		if(*(a_best_movie + strlen(a_best_movie) - 1) == 13){
-			*(a_best_movie + strlen(a_best_movie) - 1) = 0;
-		}
 		printf("%s, %s, %s\n", a_best_movie, m_p->next==NULL ? "-" : m_p->year, m_p->next==NULL ? "-" : m_p->time);
 		a_best_movie = strtok(NULL, ",");
 	}
@@ -1267,16 +1270,17 @@ void print_m_file(int sn, char *fn){ //sort를 위한 file 출력 함수(print�
 				a_p = a_p->next;
 				continue;
 			}
+			if(*(a_name + strlen(a_name) - 1) == 13){
+				*(a_name + strlen(a_name) - 1) = 0;
+			}
+			if(*(a_name + strlen(a_name) - 1) == 13){
+				*(a_name + strlen(a_name) - 1) = 0;
+			}
 			if(!strncmp(a_name, a_p->name, strlen(a_name)-1))
 				break;
 			a_p = a_p->next;
 		}
-		if(*(a_name + strlen(a_name) - 1) == 13){
-			*(a_name + strlen(a_name) - 1) = 0;
-		}
-		if(*(a_name + strlen(a_name) - 1) == 13){
-			*(a_name + strlen(a_name) - 1) = 0;
-		}
+
 		fprintf(ofp, "A%d : %s(%s)\n", i++, a_name, a_p->next == NULL ? "-" : a_p->birth);
 	}
 
@@ -1298,17 +1302,18 @@ void print_m_file(int sn, char *fn){ //sort를 위한 file 출력 함수(print�
 				a_p = a_p->next;
 				continue;
 			}
+			if(*(a_name + strlen(a_name) - 1) == 13){
+				*(a_name + strlen(a_name) - 1) = 0;
+			}
+			if(*(a_name + strlen(a_name) - 1) == 13){
+				*(a_name + strlen(a_name) - 1) = 0;
+			}
 			if(!strncmp(a_name, a_p->name, strlen(a_name)-1))
 				break;
 			a_p = a_p->next;
 		}
 
-		if(*(a_name + strlen(a_name) - 1) == 13){
-			*(a_name + strlen(a_name) - 1) = 0;
-		}
-		if(*(a_name + strlen(a_name) - 1) == 13){
-			*(a_name + strlen(a_name) - 1) = 0;
-		}
+
 		fprintf(ofp, "A%d : %s(%s)\n", i++, a_name, a_p->next == NULL ? "-" : a_p->birth);
 		a_name = strtok(NULL, ",");
 	}
@@ -1354,17 +1359,18 @@ void print_d_file(int sn, char *fn){
 			m_p=m_p->next;
 			continue;
 		}
+		if(*(a_best_movie + strlen(a_best_movie) - 1) == 13){
+			*(a_best_movie + strlen(a_best_movie) - 1) = 0;
+		}
+		if(*(a_best_movie + strlen(a_best_movie) - 1) == 13){
+			*(a_best_movie + strlen(a_best_movie) - 1) = 0;
+		}
 		if(!strncmp(a_best_movie, m_p->title, strlen(a_best_movie)-1)){
 			break;
 		}
 		m_p = m_p->next;
 	}
-	if(*(a_best_movie + strlen(a_best_movie) - 1) == 13){
-		*(a_best_movie + strlen(a_best_movie) - 1) = 0;
-	}
-	if(*(a_best_movie + strlen(a_best_movie) - 1) == 13){
-		*(a_best_movie + strlen(a_best_movie) - 1) = 0;
-	}
+
 	fprintf(ofp, "%s, %s, %s\n", a_best_movie, m_p->next==NULL ? "-" : m_p->year, m_p->next==NULL ? "-" : m_p->time);
 	a_best_movie = strtok(NULL, ",");
 	while(1){		//두번째 대표작부터의 반복문
@@ -1383,15 +1389,15 @@ void print_d_file(int sn, char *fn){
 					m_p=m_p->next;
 					continue;
 				}
+				if(*(a_best_movie + strlen(a_best_movie) - 1) == 13){
+					*(a_best_movie + strlen(a_best_movie) - 1) = 0;
+				}
+				if(*(a_best_movie + strlen(a_best_movie) - 1) == 13){
+					*(a_best_movie + strlen(a_best_movie) - 1) = 0;
+				}
 				if(!strncmp(a_best_movie, m_p->title, strlen(a_best_movie)-1))
 					break;
 				m_p = m_p->next;
-		}
-		if(*(a_best_movie + strlen(a_best_movie) - 1) == 13){
-			*(a_best_movie + strlen(a_best_movie) - 1) = 0;
-		}
-		if(*(a_best_movie + strlen(a_best_movie) - 1) == 13){
-			*(a_best_movie + strlen(a_best_movie) - 1) = 0;
 		}
 		fprintf(ofp, "%s, %s, %s\n", a_best_movie, m_p->next==NULL? "-" : m_p->year, m_p->next==NULL? "-" : m_p->time);
 		a_best_movie = strtok(NULL, ",");
@@ -1437,16 +1443,17 @@ void print_a_file(int sn, char *fn){
 			m_p=m_p->next;
 			continue;
 		}
+		if(*(a_best_movie + strlen(a_best_movie) - 1) == 13){
+			*(a_best_movie + strlen(a_best_movie) - 1) = 0;
+		}
+		if(*(a_best_movie + strlen(a_best_movie) - 1) == 13){
+			*(a_best_movie + strlen(a_best_movie) - 1) = 0;
+		}
 		if(!strncmp(a_best_movie, m_p->title, strlen(a_best_movie)-1))
 			break;
 		m_p = m_p->next;
 	}
-	if(*(a_best_movie + strlen(a_best_movie) - 1) == 13){
-		*(a_best_movie + strlen(a_best_movie) - 1) = 0;
-	}
-	if(*(a_best_movie + strlen(a_best_movie) - 1) == 13){
-		*(a_best_movie + strlen(a_best_movie) - 1) = 0;
-	}
+
 	fprintf(ofp, "%s, %s, %s\n", a_best_movie, m_p->next == NULL ? "-" : m_p->year, m_p->next == NULL ? "-" : m_p->time);
 	a_best_movie = strtok(NULL, ",");
 	while(1){	//두번째 대표작부터의 반복문
@@ -1466,16 +1473,17 @@ void print_a_file(int sn, char *fn){
 				m_p=m_p->next;
 				continue;
 			}
+			if(*(a_best_movie + strlen(a_best_movie) - 1) == 13){
+				*(a_best_movie + strlen(a_best_movie) - 1) = 0;
+			}
+			if(*(a_best_movie + strlen(a_best_movie) - 1) == 13){
+				*(a_best_movie + strlen(a_best_movie) - 1) = 0;
+			}
 			if(!strncmp(a_best_movie, m_p->title, strlen(a_best_movie)-1))
 				break;
 			m_p = m_p->next;
 		}
-		if(*(a_best_movie + strlen(a_best_movie) - 1) == 13){
-			*(a_best_movie + strlen(a_best_movie) - 1) = 0;
-		}
-		if(*(a_best_movie + strlen(a_best_movie) - 1) == 13){
-			*(a_best_movie + strlen(a_best_movie) - 1) = 0;
-		}
+
 		fprintf(ofp, "%s, %s, %s\n", a_best_movie, m_p->next==NULL ? "-" : m_p->year, m_p->next==NULL ? "-" : m_p->time);
 		a_best_movie = strtok(NULL, ",");
 	}
