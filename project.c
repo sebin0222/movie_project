@@ -2120,7 +2120,7 @@ int menu_func(char *input) {	//명령어 입력한거 실행하는거, 추후에
 			}
 					d = root_director;
 					while (d->next != NULL) {
-						 printf("add:%d:%s:%s:%s:%s\n", d->serial_number, d->name, d->sex, d->birth, d->best_movies);
+						 printf("%d:%s:%s:%s:%s\n", d->serial_number, d->name, d->sex, d->birth, d->best_movies);
 						 d = d->next;
 					}
 					printf("\n");
@@ -2134,7 +2134,7 @@ int menu_func(char *input) {	//명령어 입력한거 실행하는거, 추후에
 					while (1) {
 						if(a->next == NULL)
 							break;
-						 printf("%d:%s\n", a->serial_number, a->name);
+						 printf("%d:%s:%s:%s:%s\n", a->serial_number, a->name, a->sex, a->birth, a->best_movies);
 						 a = a->next;
 					}
 					printf("\n");
