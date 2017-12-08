@@ -155,6 +155,7 @@ void load_movie() {	//movie_log를 읽어서 m 링크드 리스트를 만들어 
 				//printf("= is comparamised\n");
 				*(token + strlen(token) - 1) = 0;	//마지막에 읽어온 폼 피드(form feed?)를 없애줌
 			}
+
 			printf("actors : %s\n", token);
 			actors = (char *)malloc(sizeof(char) * strlen(token) + 1);
 			strcpy(actors, token);
@@ -349,10 +350,7 @@ void load_director() {	//director_log를 읽어서 d 링크드 리스트를 만�
 
 			token = strtok(NULL, ":");
 			token = anti_colon_proc(token);
-			if (*token == '=') {
-				//printf("= is comparamised\n");
-				*(token + strlen(token) - 1) = 0;	//마지막에 읽어온 폼 피드(form feed?)를 없애줌
-			}
+
 			//printf("best_movies : %s\n", token);
 			best_movies = (char *)malloc(sizeof(char) * strlen(token) + 1);
 			strcpy(best_movies, token);
@@ -537,10 +535,7 @@ void load_actor() {	//actor_log를 읽어서 a 링크드 리스트를 만들어 
 
 			token = strtok(NULL, ":");
 			token = anti_colon_proc(token);
-			if (*token == '=') {
-				//printf("= is comparamised\n");
-				*(token + strlen(token) - 1) = 0;	//마지막에 읽어온 폼 피드(form feed?)를 없애줌
-			}
+
 			//printf("best_movies : %s\n", token);
 			best_movies = (char *)malloc(sizeof(char) * strlen(token) + 1);
 			strcpy(best_movies, token);
