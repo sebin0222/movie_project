@@ -1059,7 +1059,7 @@ void print_d(int sn){ //director 레코드의 print 함수
       d_p = d_p->next;
    }
 	 if(d_p->name == NULL){
-		 printf("*deleted record*\n");
+		 printf("*deleted record*\n\n");
 		 return;
 	 }
 
@@ -1146,7 +1146,7 @@ void print_a(int sn){
       a_p = a_p->next;
    }
 	 if(a_p->name==NULL){
-		 printf("*deleted record*\n");
+		 printf("*deleted record*\n\n");
 		 return;
 	 }
 	char *a_best_movie = (char *)malloc(sizeof(char)*strlen(a_p->best_movies)+1);
@@ -1228,7 +1228,7 @@ void print_m_file(int sn, char *fn){ //sort를 위한 file 출력 함수(print�
       m_p = m_p->next;
    }
 	 if(m_p->title==NULL){
-		 printf("*deleted record*\n");
+		 printf("*deleted record*\n\n");
 		 return;
 	 }
   fprintf(ofp, "%d, %s, %s\n", m_p->serial_number, m_p->title == NULL ? "-" : m_p->title, m_p->genre == NULL? "-" : m_p->genre);
@@ -1336,7 +1336,7 @@ void print_d_file(int sn, char *fn){
       d_p = d_p->next;
    }
 	 if (d_p->name==NULL){
-		 printf("*deleted record*\n");
+		 printf("*deleted record*\n\n");
 		 return;
 	 }
 
@@ -1420,7 +1420,7 @@ void print_a_file(int sn, char *fn){
       a_p = a_p->next;
    }
 	 if(a_p->name == NULL){
-		 printf("*deleted record*\n");
+		 printf("*deleted record*\n\n");
 		 return;
 	 }
 
