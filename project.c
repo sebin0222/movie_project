@@ -328,7 +328,7 @@ void load_director() {	//director_log를 읽어서 d 링크드 리스트를 만�
 
 		if (!strcmp(menu, "add"))
 			serial_d_num = serial_num + 1;	//나중에 add d를 할 때 올바른 시리얼 넘버를 갖게함
-		
+
 
 		if (strcmp(menu, "delete")) {
 			token = strtok(NULL, ":");
@@ -458,7 +458,7 @@ void load_director() {	//director_log를 읽어서 d 링크드 리스트를 만�
 	}
 	else {	//director_list가 존재하지 않는다면
 		fp_copy = fopen("director_list", "wt");
-		
+
 		d_temp = root_director;
 		while (d_temp->next != NULL) {
 			if (d_temp->name == NULL) {
@@ -1864,7 +1864,7 @@ void print_m(int sn) { //movie print 함수
 		m_p = m_p->next;
 	}
 	if (m_p->title == NULL) { //delete된 레코드일 경우
-		printf("*deleted record*\n\n", m_p->serial_number);
+		printf("*deleted record*\n\n");
 		return;
 	}
 
@@ -1983,7 +1983,7 @@ void print_d(int sn) { //director 레코드의 print 함수
 		d_p = d_p->next;
 	}
 	if (d_p->name == NULL) {
-		printf("*deleted record*\n");
+		printf("*deleted record*\n\n");
 		return;
 	}
 
@@ -2070,7 +2070,7 @@ void print_a(int sn) {
 		a_p = a_p->next;
 	}
 	if (a_p->name == NULL) {
-		printf("*deleted record*\n");
+		printf("*deleted record*\n\n");
 		return;
 	}
 	char *a_best_movie = (char *)malloc(sizeof(char)*strlen(a_p->best_movies) + 1);
@@ -3069,9 +3069,6 @@ int menu_func(char *input) {	//명령어 입력한거 실행하는거, 추후에
 				m = root_movie;
 				while (m->next != NULL) {
 					printf("%d:%s:%s:%s:%s:%s:%s\n", m->serial_number, m->title, m->genre, m->director, m->year, m->time, m->actors);
-					if (m->d_link != NULL) {
-						printf("%s's birthday : %s\n", m->d_link->name, m->d_link->birth);
-					}
 					m = m->next;
 				}
 				printf("\n");
@@ -3083,7 +3080,7 @@ int menu_func(char *input) {	//명령어 입력한거 실행하는거, 추후에
 				}
 				d = root_director;
 				while (d->next != NULL) {
-					printf("add:%d:%s:%s:%s:%s\n", d->serial_number, d->name, d->sex, d->birth, d->best_movies);
+					printf("%d:%s:%s:%s:%s\n", d->serial_number, d->name, d->sex, d->birth, d->best_movies);
 					d = d->next;
 				}
 				printf("\n");
@@ -3097,7 +3094,7 @@ int menu_func(char *input) {	//명령어 입력한거 실행하는거, 추후에
 				while (1) {
 					if (a->next == NULL)
 						break;
-					printf("add:%d:%s:%s:%s:%s\n", a->serial_number, a->name, a->sex, a->birth, a->best_movies);
+					printf("%d:%s:%s:%s:%s\n", a->serial_number, a->name, a->sex, a->birth, a->best_movies);
 					a = a->next;
 				}
 				printf("\n");
